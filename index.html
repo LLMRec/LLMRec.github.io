@@ -64,14 +64,14 @@
             <span class="author-block"><a href="https://scholar.google.com/citations?hl=zh-CN&user=GuQ9bpAAAAAJ">Dawei Yin</a>,</span>
             <span class="author-block"><a href="https://sites.google.com/view/chaoh">Chao Huang*</a>,</span>          
                         
-              <br> <!-- 这里是换行标签 -->
+              <br> <!-- 这里是换行标签
                         <span class="author-block">
               <a href="#">Lixin Su</a>,</span>
               <a href="#">Suqi Cheng</a>,</span>
               <a href="https://www.yindawei.com/">Dawei Yin</a>,</span>
-              <a href="https://sites.google.com/view/chaoh">Chao Huang</a><sup>*</sup>,
+              <a href="https://sites.google.com/view/chaoh">Chao Huang</a><sup>*</sup>, -->
             <!-- </span> -->
-            </span>
+<!--             </span> -->
                     </div>
 
                     <div class="is-size-5 publication-authors" style="margin-top: 10px;">
@@ -218,13 +218,19 @@
                             
                         </li>
                         <li>
-                            <b>Dual-Stage Graph Instruction Tuning.</b>
-                            The dual-stage graph instruction tuning paradigm proposed in this work builds upon the concept of instruction tuning, which has been recently introduced to enhance the adaptability of language models for specific domains [45]. In this paradigm, we aim to align the language capacity of the model with the nuances of graph learning tasks, enabling the language model to generate more accurate and contextually appropriate responses for graph-structured data.
-                        </li>
+                            <b>LLMs as Implicit Feedback Augmentor.</b>
+                            ...
+                             </li>
                         <li>
-                            <b>Chain-of-Thought (CoT) Distillation.</b>
-                            When faced with diverse graph data, language models may encounter new or unfamiliar patterns and structures. This distribution shift can pose challenges in generating accurate and coherent responses, especially when the number of node classes varies across different types of graph data. To address this challenge and boost accuracy in the presence of distribution shift, it is essential to equip our GraphGPT with step-by-step reasoning abilities. In this regard, we propose utilizing the Chain-of-Thought (COT) technique [47], which explicitly models the flow of thoughts and reasoning steps. By incorporating COT, our language model improves the coherence and consistency of generated text. It enables the model to follow a logical progression of ideas, enhancing its ability to understand and reason about the given graph data.
+                            <b>LLM-based Side Information Augmentation.</b>
+                           ...
                         </li>
+
+                        <li>
+                            <b>Training and Denoised Data Robustification.</b>
+                           ...
+                        </li>
+                        
                     </ul>
                     </p>
                     <br>
@@ -242,7 +248,7 @@
 
                 <div class="content has-text-justified">
                     <p>
-                        We adopt a similar instruction template, which consists of three parts. To generate graph information for each node, we employ the same neighbor sampling approach used in the first stage. This approach ensures that relevant graph information is captured, with each node acting as the central node. For the node classification task, the human question instruction contains both the indicator token <graph> and specific text information about the central node. This instruction prompts the language model to predict the category of the central node based on both the graph structure data and the accompanying text information. An example of the instruction data for different tasks can be seen in Figure 4, providing a visual representation of how the instruction is structured and presented to the language model.
+                    ...   
                     </p>
                     <br>
                     <img class="columns is-centered has-text-centered" src="./static/images/inference.png" alt="Teaser" width="100%"
@@ -251,7 +257,7 @@
                     <figcaption>
                         <p style="text-align: center;">
                             <font color="061E61">
-                                <b>Figure 3:</b> Our instruction designs for graph matching task (upper), node classification (middle) and link prediction (lower).
+                                <b>Figure 3:</b> Constructed prompt for LLMs' completion including i) task description, ii) historical interactions, iii) candidates, and iv) output format description.
                             </font>
                         </p>
                     </figcaption>
@@ -328,27 +334,27 @@
 
                 <h4 class="title is-4">Overall Performance</h4>
                 <p>
-                    We conduct experiments on the node classification task, evaluating both supervised and zero-shot scenarios. The overall performance is presented in Table 1. Supervised Task Settings: We train the models on a specific dataset and evaluated their performance on the corresponding test set (e.g., training on Arxiv-Arxiv and testing on the Arxiv test set). Zero-Shot Task Settings: We train the models on a specific dataset and test them on other datasets without any additional training (e.g., training on Arxiv-PubMed and testing on the PubMed dataset). To account for variations in the number of classes across different datasets, we employed a classifier trained with transfer data, typically a linear layer, when testing GNN-based models. In Table 1, "-7B-" represents the parameter scale, while "-v1.1-" and "-v1.5-" indicate different versions of the base Vicuna model. "-stage2" indicates that only the second stage tuning is adopted. "-std" and "-cot" denote the use of the standard and generated COT instruction datasets, respectively.
+                    ...
                 </p>
                 <img class="columns is-centered has-text-centered" src="./static/images/result1.png" alt="Teaser" width="100%" style="margin:0 auto">
                     <figcaption>
                         <p style="text-align: center;">
                             <font color="061E61">
-                                <b>Figure 4:</b> Performance comparison of various methods on node classification under both supervised and zero-shot settings.
+                                <b>Figure 4:</b> Performance comparison on different datasets in terms of Recall@10/20/50, and NDCG@10/20/50, and Precision@20.
                             </font>
                         </p>
                     </figcaption>
 
 
-                <h4 class="title is-4">Generalization for Multitasking Graph Learner.</h4>
+                <h4 class="title is-4">Ablation and Effectiveness Analyses.</h4>
                 <p>
-                       we explore the generalization ability of our model by incorporating more instruction data to fine-tune the LLM for effectively handling various types of tasks.
+                       ...
                 </p>
                 <img class="columns is-centered has-text-centered" src="./static/images/result2.png" alt="Teaser" width="50%" style="margin:0 auto">
                     <figcaption>
                         <p style="text-align: center;">
                             <font color="061E61">
-                                <b>Figure 5:</b> Performance comparison of various instruction mixtures in supervised learning on the Arxiv dataset and the zero-shot setting on the Cora dataset for node classification.
+                                <b>Figure 5:</b> Ablation study on key components (\ie, data augmentation strategies, denoised data robustification mechanisms).
                             </font>
                         </p>
                     </figcaption>
@@ -356,39 +362,57 @@
 
 
 
-                <h4 class="title is-4">Ablation Study</h4>
+                <h4 class="title is-4">Hyperparameter Analysis.</h4>
                 <p>
-                    We conduct an ablation study to investigate the individual contributions of different sub-modules of our proposed framework, and the results are reported in Table 4. 
+                    ... 
                 </p>
                 <img class="columns is-centered has-text-centered" src="./static/images/result3.png" alt="Teaser" width="50%" style="margin:0 auto">
                     <figcaption>
                         <p style="text-align: center;">
                             <font color="061E61">
-                                <b>Figure 6:</b> Module ablation study under both supervised and zero-shot settings to analyze the individual contributions.
+                                <b>Figure 6:</b> Parameter analysis of temperature and top-p.
                             </font>
                         </p>
                     </figcaption>
 
-
-
-
-                <h4 class="title is-4">Time and Space Efficiency.</h4>
-                <p>
-                    Study on the time and space efficiency of our GraphGPT during both the training and inference stages.
-                </p>
                 <img class="columns is-centered has-text-centered" src="./static/images/result4.png" alt="Teaser" width="50%" style="margin:0 auto">
                     <figcaption>
                         <p style="text-align: center;">
                             <font color="061E61">
-                                <b>Figure 7:</b> Study on the time and space efficiency of our GraphGPT during both the training and inference stages.
+                                <b>Figure 6:</b> Analysis of key parameter (i.e., # candidate ) for LLM w.r.t. implicit feedback augmentation.
+                            </font>
+                        </p>
+                    </figcaption>
+
+                <img class="columns is-centered has-text-centered" src="./static/images/result5.png" alt="Teaser" width="50%" style="margin:0 auto">
+                    <figcaption>
+                        <p style="text-align: center;">
+                            <font color="061E61">
+                                <b>Figure 6:</b>  Impact of hyperparameters (i.e., prune rate, # augmented BPR training data, and augmented feature incorporate scale).
                             </font>
                         </p>
                     </figcaption>
 
 
-                <h4 class="title is-4">Model Inference Efficiency.</h4>
+
+
+                <h4 class="title is-4">Model-Agnostic Property.</h4>
                 <p>
-                    The study aims to assess the computational efficiency of our model during both the model training and inference stages.
+                    We conducted model-agnostic experiments on Netflix to validate the applicability of our data augmentation. Specifically, we incorporated the augmented implicit feedback and features, into baselines MICRO, MMSSL, BM3, and LATTICE. As shown in Fig.7, our LLM-based data improved the performance of all models, demonstrating their effectiveness and reusability. Some results didn't surpass our model, maybe due to: i) the lack of a quality constraint mechanism to regulate the stability and quality of the augmented data, and ii) the absence of modeling collaborative signals in the same vector space, as mentioned in Sec.~\ref{sec:side-incorporation}. The limited enhancement in the BM3 results could be attributed to its initial omission of the BPR loss, wherein solely the augmented data was employed for BPR computations.
+                </p>
+                <img class="columns is-centered has-text-centered" src="./static/images/result6.png" alt="Teaser" width="50%" style="margin:0 auto">
+                    <figcaption>
+                        <p style="text-align: center;">
+                            <font color="061E61">
+                                <b>Figure 7:</b> Model-agnostic experiment to evaluate the effectiveness of LLM-based data augmentation on different recommender in terms of R@20, N@20, and P@20. 
+                            </font>
+                        </p>
+                    </figcaption>
+
+
+                <h4 class="title is-4">Cost/Improvement Conversion Rate.</h4>
+                <p>
+                    To evaluate the cost-effectiveness of our data augmentation strategies, we compute the CIR as presented in Tab.X. The CIR is compared with the ablation of three data augmentation strategies and the best baseline from Tab.X and Tab.X. The cost of the implicit feedback augmentor refers to the price of GPT-3.5 turbo 4K. The cost of the our developed side information augmentation includes completion (using GPT-3.5 turbo 4K or 16K) and embedding (using text-embedding-ada-002). We utilize the HuggingFace API tool for tokenizer and counting. The results in Tab.X show that 'U' (LLM-based user profiling) is the most cost-effective .
                 </p>
                 <img class="columns is-centered has-text-centered" src="./static/images/result5.png" alt="Teaser" width="50%" style="margin:0 auto">
                     <figcaption>
@@ -1752,9 +1776,9 @@
 <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
         <h2 class="title">BibTeX</h2>
-        <pre><code>@articles{tang2023graphgpt,
-  title={GraphGPT: Graph Instruction Tuning for Large Language Models},
-  author={Jiabin Tang, Yuhao Yang, Wei Wei, Lei Shi, Lixin Su, Suqi Cheng, Dawei Yin, Chao Huang},
+        <pre><code>@articles{wei2023llmrec,
+  title={LLMRec: Large Language Models with Graph Augmentation for Recommendation},
+  author={Wei Wei, Xubin Ren, Jiabin Tang, Qinyong Wang, Lixin Su, Suqi Cheng, Suqi Cheng, junfeng wang, Dawei Yin, Chao Huang},
   journal = {arXiv preprint},
   year={2023}
 }
