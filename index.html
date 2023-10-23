@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="description"
-          content="GraphGPT: Graph Instruction Tuning for Large Language Models">
-    <meta name="keywords" content="Graph learning, Large Language Models">
+          content="LLMRec: Large Language Models with Graph Augmentation for Recommendation">
+    <meta name="keywords" content="Large Language Models, Data Augmentation, Recommendation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GraphGPT</title> 
 
@@ -161,7 +161,7 @@
                 <h2 class="title is-2">Abstract</h2>
                 <div class="content has-text-justified">
                     <p>
-                        Graph Neural Networks (GNNs) have advanced graph structure understanding via recursive information exchange and aggregation among graph nodes. To improve model robustness, self-supervised learning (SSL) has emerged as a promising approach for data augmentation. However, existing methods for generating pre-trained graph embeddings often rely on fine-tuning with specific downstream task labels, which limits their usability in scenarios where labeled data is scarce or unavailable. To address this, our research focuses on advancing the generalization capabilities of graph models in challenging zero-shot learning scenarios. Inspired by the success of large language models (LLMs), we aim to develop a graph-oriented LLM that can achieve high generalization across diverse downstream datasets and tasks, even without any information available from the downstream graph data. In this work, we present the <b>GraphGPT</b> framework that aligns LLMs with graph structural knowledge with a graph instruction tuning paradigm. Our framework incorporates a text-graph grounding component to establish a connection between textual information and graph structures. Additionally, we propose a dual-stage instruction tuning paradigm, accompanied by a lightweight graph-text alignment projector. This paradigm explores self-supervised graph structural signals and task-specific graph instructions, to guide LLMs in understanding complex graph structures and improving their adaptability across different downstream tasks. Our framework is evaluated on supervised and zero-shot graph learning tasks, demonstrating superior generalization and outperforming state-of-the-art baselines.
+                    The problem of data sparsity has long plagued recommendation systems, and previous studies attempted to mitigate this issue by incorporating side information. However, this approach inevitably introduces side effects such as noise, availability issues, and quality issues. These problems hinder the effective modeling of user preferences and impact recommendation performance. In light of the advancements in large language models (LLMs) that possess a wide knowledge base and notable reasoning capabilities, we propose a novel framework called LLMRec that strengthens recommenders by applying three simple yet effective LLM-based graph augmentation strategies to recommendation system. Specifically, our approach is to make the most of the modality content within online platforms (e.g., Netflix, MovieLens) to augment heterogeneous interaction graph by i) reinforcing user-item interactive edges, ii) enhancing item node attributes, and iii) conducting user node profiling, intuitively from the natural language perspective. By doing so, we alleviate the challenges posed by sparse implicit feedback and low-quality side information in recommenders. Besides, to ensure the quality of the augmentation, we develop a denoised data robustification mechanism, including noisy implicit feedback pruning and MAE-based feature enhancement that help refine the augmented data and improve its reliability. In addition, we provide theoretical analysis to support the effectiveness of \model\ and clarify the benefits of our method to facilitate model optimization. Experimental results demonstrate the effectiveness of our LLM-enhanced data augmentors, showcasing their superiority when compared to state-of-the-art recommendation techniques on benchmark datasets. To ensure reproducibility, we have made our code and augmented data publicly available at:  https://github.com/HKUDS/LLMRec.git . 
                     </p>
                 </div>
             </div>
@@ -193,7 +193,7 @@
                     <figcaption>
                         <p style="text-align: center;">
                             <font color="061E61">
-                                <b>Figure 1:</b> The overall architecture of our proposed GraphGPT with graph instruction tuning paradigm.
+                                <b>Figure 1:</b> The LLMRec framework: (1) Three types of data augmentation strategies: i) augmenting user-item interactions; ii) enhancing item attributes, and iii) user profiling. (2) Augmented training with and denoised data robustification mechanism.
                             </font>
                         </p>
                     </figcaption>
